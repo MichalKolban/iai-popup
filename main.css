@@ -1,3 +1,10 @@
+:root {
+    --default-radius : 3px;
+    --border-color : #C3C7C8;
+    --text-color : #333;
+    --blue : #0090F6;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -6,10 +13,52 @@
 
 body {
     font-family: Arial, Helvetica, sans-serif;
+    color: var(--text-color);
 }
 
 .hide {
     opacity: 0;
+}
+
+.img-slider {
+    width: 100%;
+}
+
+.img-container1{
+    display: none;
+    width: 86%;
+    height: 40%;
+    background-image: url("images/NoPath\ —\ kopia.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.img-container2{
+    display: none;
+    width: 86%;
+    height: 40%;
+    background-image: url("images/pol_il_Playstation-1.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.arrow-right {
+    width: 6%;
+    height: 40%;
+    background-image: url("images/chevron-right-4.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.arrow-left {
+    width: 6%;
+    height: 40%;
+    background-image: url("images/chevron-right-4.svg");
+    transform: scaleX(-1);
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .popup-button {
@@ -18,6 +67,8 @@ body {
 }
 
 .popup-container{
+    min-width: 350px;
+    max-width: 50%;
     display: flex;
     position: absolute;
     top: 50%;
@@ -25,7 +76,7 @@ body {
     transform: translate(-50%,-50%);
     width: 60%;
     height: 300px;
-    border-radius: 5px;
+    border-radius: var(--default-radius);
     box-shadow: 5px 5px 10px -2px rgba(0,0,0,0.6);
 }
 
@@ -33,7 +84,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 40%;
+    width: 50%;
     height: 100%;
 }
 
@@ -43,5 +94,147 @@ body {
 }
 
 h2 {
-    margin: 20px auto;
+    width: 90%;
+    margin: 20px 0px;
 }
+
+.button-container {
+    display: flex;
+    width: 100%;
+    gap: 10px;
+}
+
+.rambutton{
+    background-color: transparent;
+    border: 1px solid var(--border-color);
+    border-radius: var(--default-radius);
+    padding: 5px 10px;
+    font-size: 8px;
+    margin: 10px 0px;
+}
+
+.description{
+    margin: 5px;
+}
+
+.variant-container h3 {
+    font-size: 15px;
+}
+
+.variant-container {
+    width: 100%;
+}
+
+.variant-container select{
+    margin: 10px 0;
+    width: 100%;
+    padding: 2px 4px;
+    border-radius: var(--default-radius);
+    background-color: transparent;
+    border: 1px solid var(--border-color);
+}
+
+.avaliable-container{
+    margin: 10px 0;
+    display: flex;
+    width: 40%;
+}
+
+.avaliable-container p{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    padding-left: 5px;
+}
+
+.check{
+    width: 14%;
+    background-image: url("images/ok.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+
+.avaliable-time-box {
+    display: flex;
+    font-size: 7px;
+}
+
+.time-container{
+    display: flex;
+    width: 60%;
+}
+
+.time-container .desc{
+    padding-left: 5px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+}
+
+.time{
+    width: 10%;
+    height: 30px;
+    background-image: url("images/delivery-time-tool.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+
+.add-container {
+    margin: 10px 0;
+    display: flex;
+}
+
+.add-container input[type="number"]{
+    width: 30%;
+    padding: 8px 8px;
+    text-align: center;
+    border-radius: var(--default-radius);
+    border: 1px solid var(--border-color);
+}
+
+.add-container input[type="submit"]{
+    padding: 8px 12px;
+    border-radius: var(--default-radius);
+    background-color: #0090F6;
+    color: #fff;
+    font-weight: bold;
+    border: none;
+}
+
+.exit-button{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    width: 15px;
+    height: 15px;
+    background-image: url("images/close\ \(-8.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+
+.glow {
+    border: 1px solid var(--blue);
+}
+
+.active {
+    display: block;
+}
+
+.desc p:nth-of-type(2) {
+    color: var(--blue);
+}
+
+
+@media screen and (min-width: 500px){
+
+    p {
+        font-size: 10px;
+    }
+
+}
+    

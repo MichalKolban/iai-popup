@@ -12,28 +12,27 @@
     <button class="popup-button">Click me</button>
 
     <div class="popup-container hide">
+        <div class="exit-button"></div>
         <div class="img-slider">
-            <div class="img-container"></div>
-            <img src="images/NoPath — kopia.svg" alt="">
             <div class="arrow-left"></div>
+            <div class="img-container1 item"></div>
+            <div class="img-container2 item"></div>
             <div class="arrow-right"></div>
         </div>
-
       <div class="description">
         <div class="main-name"></div>
-
         <div class="size-container">
             <h3>Rozmiar:</h3>
+            <div class="button-container">
             <div class="button-box"></div>
+            </div>
         </div>
-
         <div class="variant-container">
             <h3>Wariant:</h3>
             <label for="variant"></label>
             <select id="variants">
             </select>
         </div>
-
         <div class="avaliable-time-box">
         <div class="avaliable-container">
             <div class="check"></div>
@@ -41,25 +40,21 @@
         </div>
         <div class="time-container">
             <div class="time"></div>
+            <div class="desc">
             <p>Możemy wysłać już dzisiaj!</p>
             <p>Sprawdź czasy i koszty wysyłki</p>
         </div>
-
+        </div>
+    </div>
         <div class="add-container">
             <form>
-                <input type="number" id="points" name="points" step="1">
+                <input type="number" value=0 id="points" name="points" step="1">
                 <input type="submit" value="Dodaj do koszyka">
               </form>
         </div>
-    </div>
       </div>
-
-      <div class="exit-button">
-
       </div>
     </div>
-
-
     <script src='app.js'></script>
 </body>
 </html>

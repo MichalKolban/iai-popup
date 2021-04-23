@@ -3,13 +3,20 @@ const popupContainer = document.querySelector(".popup-container");
 const mainName = document.querySelector(".main-name");
 const selectForm = document.querySelector(".variant-container #variants");
 const sizeContainer = document.querySelector(".size-container");
+const buttonContainer = document.querySelector(".button-container");
 const buttonBox = document.querySelectorAll(".button-box");
+const exitBtn = document.querySelector(".exit-button");
+// const addMinusBtn = document.querySelector("#minus");
+// const addPlusBtn = document.querySelector("#plus");
+const submitBtn = document.querySelector("[type=submit]");
 
 async function loadJSON() {
   const rawData = await fetch("./xbox.json");
   const data = await rawData.json();
   return data;
 }
+
+shoppingCart = {};
 
 async function getProperData() {
   const data = await loadJSON();
@@ -47,7 +54,7 @@ function createRamButtons(ramArr) {
     const btn = document.createElement("button");
     btn.classList.add("rambutton");
     btn.innerHTML = ramArr[i].ram;
-    sizeContainer.appendChild(btn);
+    buttonContainer.appendChild(btn);
   }
 }
 
@@ -62,6 +69,9 @@ function createOptions(colorsArr) {
 
 async function displayPopup() {
   popupContainer.classList.remove("hide");
+  btn.classList.add("hide");
+  slides[0].classList.add("active");
+
   const product = await getProperData();
 
   createH2(product.name);
@@ -71,25 +81,77 @@ async function displayPopup() {
   const ramButtons = document.querySelectorAll(".rambutton");
   ramButtons.forEach((button) => {
     button.addEventListener("click", (e) => {
+      button.classList.toggle("glow");
       shoppingCart["ram"] = e.target.innerText;
-      if (cart["ram"] !== e.target.innerText) {
-        cart["ram"] = e.target.innerText;
+      if (shoppingCart["ram"] !== e.target.innerText) {
+        shoppingCart["ram"] = e.target.innerText;
       }
     });
   });
   const options = document.querySelector("#variants");
   options.addEventListener("change", (e) => {
-    let color = {};
-    console.log(e.target.value);
-    color["option"] = e.target.value;
+    shoppingCart["color"] = e.target.value;
+    if (shoppingCart["color"] !== e.target.value) {
+      shoppingCart["color"] = e.target.value;
+    }
   });
 
-  // const quantity = document.querySelector('.add-container input')
-  // quantity.addEventListener('change', (e)=> {
-  //     e.preventDefault();
-  //     console.log(e.target.value)
-  // })
+  const amount = document.querySelector("[type=number]");
+  amount.addEventListener("change", (e) => {
+    console.log(e.target.value);
+    shoppingCart["amount"] = e.target.value;
+    if (shoppingCart["amount"] !== e.target.value) {
+      shoppingCart["amount"] = e.target.value;
+    }
+  });
+}
+
+function cleanAndHideDataAfterExit() {
+  popupContainer.classList.add("hide");
+  btn.classList.remove("hide");
+  mainName.textContent = "";
+  buttonContainer.innerHTML = "";
+  selectForm.innerHTML = "";
 }
 
 btn.addEventListener("click", displayPopup);
+exitBtn.addEventListener("click", cleanAndHideDataAfterExit);
 
+submitBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  alert(JSON.stringify(shoppingCart));
+});
+
+const slides = document.querySelectorAll(".item");
+const nextSlide = document.querySelector(".arrow-right");
+const prevSlide = document.querySelector(".arrow-left");
+const totalSlides = slides.length;
+let index = 0;
+
+nextSlide.addEventListener("click", () => {
+  next("next");
+});
+
+prevSlide.addEventListener("click", () => {
+  next("prev");
+});
+
+function next(direction) {
+  if (direction == "next") {
+    index++;
+    if (index == totalSlides) {
+      index = 0;
+    }
+  } else {
+    if (index == 0) {
+      index = totalSlides - 1;
+    } else {
+      index--;
+    }
+  }
+
+  for (let i = 0; i < slides.length; i++) {
+    slides[i].classList.remove("active");
+  }
+  slides[index].classList.add("active");
+}
